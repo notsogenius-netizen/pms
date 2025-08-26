@@ -1,8 +1,12 @@
 package com.pms.patientservice.dto;
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Data
 public class PatientResponse {
     private UUID id;
 
@@ -14,5 +18,4 @@ public class PatientResponse {
 
     private LocalDate dateOfBirth;
 
-    private LocalDate registeredDate;
 }
