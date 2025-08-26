@@ -1,6 +1,5 @@
 package com.pms.patientservice.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;

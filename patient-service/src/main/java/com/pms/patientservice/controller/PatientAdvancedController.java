@@ -2,7 +2,6 @@ package com.pms.patientservice.controller;
 
 import com.pms.patientservice.dto.GenericResponseDto;
 import com.pms.patientservice.dto.PatientCreation;
-import com.pms.patientservice.dto.PatientResponse;
 import com.pms.patientservice.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
