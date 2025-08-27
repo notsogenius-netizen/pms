@@ -41,6 +41,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
+      BILLING_SERVICE_ADDRESS: billing-service
+      BILLING_SERVICE_PORT: 9090
     networks:
       - internal
     restart: unless-stopped
