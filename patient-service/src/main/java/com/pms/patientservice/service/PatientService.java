@@ -5,6 +5,7 @@ import com.pms.patientservice.dto.PatientResponse;
 import com.pms.patientservice.exception.EmailAlreadyExistsException;
 import com.pms.patientservice.exception.PatientNotFoundException;
 import com.pms.patientservice.grpc.BillingServiceGrpcClient;
+import com.pms.patientservice.kafka.KafkaProducer;
 import com.pms.patientservice.mapper.PatientMapper;
 import com.pms.patientservice.model.Patient;
 import com.pms.patientservice.repository.PatientRepository;
@@ -26,6 +27,7 @@ public class PatientService {
 
     private final PatientRepository patientRepository;
     private final BillingServiceGrpcClient billingServiceGrpcClient;
+    private final KafkaProducer kafkaProducer;
 
     public List<PatientResponse> getAllPatients() {
         log.info("Fetching all patients");
@@ -74,6 +76,9 @@ public class PatientService {
         billingServiceGrpcClient.createBillingAccount(
                 savedPatient.getId().toString(), savedPatient.getName(), savedPatient.getEmail()
         );
+
+        kafkaProducer.sendEvent(savedPatient);
+
         return savedPatient.getId().toString();
     }
 

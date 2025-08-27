@@ -1,6 +1,11 @@
 spring:
   application:
     name: patient-service
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
 #  datasource:
 #    url: jdbc:postgresql://postgres:5432/patient_service_db
 #    username: postgres
@@ -13,6 +18,13 @@ spring:
 #    properties:
 #      hibernate:
 #        format_sql: true
+
+billing:
+  service:
+    address: billing-service
+    grpc:
+      port: 9090
+
 server:
   port: 8000
   error:
@@ -23,4 +35,4 @@ server:
 logging:
   level:
     com.pms.patientservice: DEBUG
-    org.springframework.web: DEBUG
+    org.springframework.kafka: DEBUG
