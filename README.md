@@ -43,12 +43,25 @@ This will start:
 - PostgreSQL database on port 6000
 - MongoDB database on port 6001
 - Patient Service on port 8000
+- Billing Service on port 8001 (HTTP) and 9090 (gRPC)
 
 ### 3. Access the Application
 
 - Patient Service API: http://localhost:8000
+- Billing Service HTTP API: http://localhost:8001
+- Billing Service gRPC: localhost:9090
 - PostgreSQL: localhost:6000
 - MongoDB: localhost:6001
+
+## Services Overview
+
+| Service | Port | Protocol | Description |
+|---------|------|----------|-------------|
+| Patient Service | 8000 | HTTP | Patient management REST API |
+| Billing Service | 8001 | HTTP | Billing management REST API |
+| Billing Service | 9090 | gRPC | Billing management gRPC API |
+| PostgreSQL | 6000 | TCP | Primary database |
+| MongoDB | 6001 | TCP | Document database |
 
 ## Security Best Practices
 
@@ -92,6 +105,7 @@ docker-compose logs
 
 # Specific service
 docker-compose logs patient-service
+docker-compose logs billing-service
 docker-compose logs postgres
 docker-compose logs mongo
 ```
@@ -111,7 +125,11 @@ Patient Management System/
 ├── .env                        # Your actual environment file (not in git)
 ├── .gitignore                  # Git ignore rules
 ├── README.md                   # This file
-└── patient-service/            # Patient microservice
+├── patient-service/            # Patient microservice
+│   ├── Dockerfile             # Service container definition
+│   ├── pom.xml                # Maven dependencies
+│   └── src/                   # Java source code
+└── billing-service/           # Billing microservice (gRPC)
     ├── Dockerfile             # Service container definition
     ├── pom.xml                # Maven dependencies
     └── src/                   # Java source code
