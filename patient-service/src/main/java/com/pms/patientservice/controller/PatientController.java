@@ -34,7 +34,7 @@ public class PatientController {
      * Get all patients
      */
     @GetMapping
-    @Operation(summary = "Get Patients")
+    @Operation(summary = "Get All Patients")
     public ResponseEntity<GenericResponseDto<List<PatientResponse>>> getAllPatients() {
         log.info("GET /api/v1/patients - Fetching all patients");
         List<PatientResponse> patients = patientService.getAllPatients();
